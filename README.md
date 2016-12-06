@@ -3,6 +3,21 @@
 **Work in progress**
 
 > Little web app to keep track of problems I want to solve
+>
+> You can add, edit, or archive problems with no cost (:
+
+This app works 100% in the client side, it can work offline and all it needs
+is access to the `localStorage` provided by your browser.
+
+*warning: For this reason the data will not be preserved if you are using it in private mode or similar*
+
+
+## Features (in progress)
+
+- [x] Persistence via LocalStorate
+- [ ] Offline
+- [ ] Use markdown and LaTeX to render notes
+
 
 ## Build Setup
 
