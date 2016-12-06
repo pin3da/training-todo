@@ -1,5 +1,7 @@
 # training-todo
 
+**Work in progress**
+
 > Little web app to keep track of problems I want to solve
 
 ## Build Setup
