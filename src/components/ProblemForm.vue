@@ -1,7 +1,7 @@
 <template>
   <div>
     <label> Name * </label>
-    <input v-model="newProblem.name" autofocus>
+    <input v-model="newProblem.name" ref="inputProblemName" autofocus>
 
     <label> Url * </label>
     <input v-model="newProblem.url">
@@ -11,7 +11,12 @@
     <textarea v-model="newProblem.notes">
     </textarea>
 
-    <button @click="addProblem"> Add !</button>
+    <button v-if="toEdit" @click="doneEdit">
+      Edit !
+    </button>
+    <button v-else @click="addProblem">
+      Add !
+    </button>
 
     <br />
     <span v-html="desc"></span>
@@ -22,7 +27,7 @@
 <script>
 export default {
   name: 'problem-form',
-  props: ['prolems', 'newProblem'],
+  props: ['prolems', 'newProblem', 'toEdit'],
   computed: {
     desc: function () {
       let name = this.newProblem.name || ''
@@ -40,6 +45,9 @@ export default {
   methods: {
     addProblem: function () {
       this.$emit('addProblem')
+    },
+    doneEdit: function () {
+      this.$emit('doneEdit')
     }
   }
 }

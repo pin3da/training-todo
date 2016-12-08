@@ -1,8 +1,17 @@
 <template>
-  <ul>
+  <ul class="problem-list">
     <li v-for="(problem, index) in problems" :key="problem.id">
-      {{index}} - {{problem.name}} @ <a :href="problem.url"> judge </a>
+      <div>
+        <label @dblclick="edit(problem, index)" >
+          {{index}} - {{problem.name}}
+        </label>
+        @ <a :href="problem.url"> judge </a>
+        <button class="destroy"
+          @click="removeProblem(problem, index)">
+          x
+        </button>
       <pre v-html='problem.notes'></pre>
+      </div>
     </li>
   </ul>
 </template>
@@ -14,6 +23,14 @@ export default {
   data () {
     return {
       msg: 'Manuel'
+    }
+  },
+  methods: {
+    edit: function (problem, index) {
+      this.$emit('editProblem', problem, index)
+    },
+    removeProblem: function (problem, index) {
+      this.$emit('removeProblem', problem, index)
     }
   }
 }
@@ -37,4 +54,17 @@ li {
 a {
   color: var(--link-color);
 }
+
+.problem-list li .destroy {
+  background-color: var(--link-color);
+  color: white;
+  border: none;
+  border-radius: 4px;
+  padding: 5px 5px;
+}
+
+.problem-list li:hover .destroy {
+  background-color: var(--sec-color);
+}
+
 </style>

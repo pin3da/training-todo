@@ -11,13 +11,15 @@ const schemaData = {
     url: null,
     notes: null
   },
-  message: ''
+  message: '',
+  toEdit: false
 }
 
 var db = {
   fetch: function () {
     var data = JSON.parse(window.localStorage.getItem(STORAGE_KEY) ||
-        JSON.stringify(schemaData))
+        '{}')
+    data = Object.assign(schemaData, data)
     data.problems.forEach(function (problem, index) {
       problem.id = index
     })
@@ -41,8 +43,12 @@ new Vue({
     v-bind:user="user"
     v-bind:newProblem="newProblem"
     v-bind:message="message"
+    v-bind:toEdit="toEdit"
     v-on:addProblem="addProblem"
+    v-on:editProblem="editProblem"
+    v-on:removeProblem="removeProblem"
     v-on:changeUser="changeUser"
+    v-on:doneEdit="doneEdit"
     />`,
   components: { App },
   data: db.fetch(),
@@ -66,6 +72,19 @@ new Vue({
       this.problems.push(this.newProblem)
       this.newProblem = window.Object.assign({}, schemaData.newProblem)
       this.message = ''
+      db.put('problems', this.problems)
+    },
+    removeProblem: function (problem, index) {
+      this.problems.splice(index, 1)
+      db.put('problems', this.problems)
+    },
+    editProblem: function (problem, index) {
+      this.newProblem = problem
+      this.toEdit = true
+    },
+    doneEdit: function () {
+      this.toEdit = false
+      this.newProblem = window.Object.assign({}, schemaData.newProblem)
       db.put('problems', this.problems)
     },
     changeUser: function (newUser) {
