@@ -1,5 +1,7 @@
 # training-todo
 
+[![Build Status](https://travis-ci.org/pin3da/training-todo.svg?branch=master)](https://travis-ci.org/pin3da/training-todo)
+
 **Work in progress**
 
 > Little web app to keep track of cool problems
