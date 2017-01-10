@@ -1,6 +1,6 @@
 <template>
   <ul class="problem-list">
-    <li v-for="(problem, index) in problems" :key="problem.id">
+    <li v-for="(problem, index) in compProblems" :key="problem.id">
       <div>
         <label @dblclick="edit(problem, index)" >
           {{index}} - {{problem.name}}
@@ -17,12 +17,25 @@
 </template>
 
 <script>
+var marked = require('marked')
+
 export default {
   name: 'problem-list',
   props: ['problems'],
   data () {
     return {
       msg: 'Manuel'
+    }
+  },
+  computed: {
+    compProblems: function () {
+      console.log(this.problems)
+      var ans = []
+      for (let i = 0; i < this.problems.length; ++i) {
+        ans.push(Object.assign({}, this.problems[i]))
+        ans[i].notes = marked(ans[i].notes || '', { sanitize: true })
+      }
+      return ans
     }
   },
   methods: {

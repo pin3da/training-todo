@@ -79,7 +79,7 @@ new Vue({
       db.put('problems', this.problems)
     },
     editProblem: function (problem, index) {
-      this.newProblem = problem
+      this.newProblem = this.problems[index]
       this.toEdit = true
     },
     doneEdit: function () {
