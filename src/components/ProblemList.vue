@@ -29,7 +29,9 @@ export default {
   },
   computed: {
     compProblems: function () {
-      console.log(this.problems)
+      if (!this.problems) {
+        return
+      }
       var ans = []
       for (let i = 0; i < this.problems.length; ++i) {
         ans.push(Object.assign({}, this.problems[i]))
