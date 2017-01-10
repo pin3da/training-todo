@@ -2,7 +2,7 @@
 
 **Work in progress**
 
-> Little web app to keep track of problems I want to solve
+> Little web app to keep track of cool problems
 >
 > You can add, edit, or archive problems with no cost (:
 
@@ -15,8 +15,8 @@ is access to the `localStorage` provided by your browser.
 ## Features (in progress)
 
 - [x] Persistence via LocalStorate
+- [x] Use markdown ~~and LaTeX~~ to render notes
 - [ ] Offline
-- [ ] Use markdown and LaTeX to render notes
 
 
 ## Build Setup
